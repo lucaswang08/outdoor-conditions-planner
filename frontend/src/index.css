@@ -29,15 +29,6 @@ input {
   gap: 25px;
 }
 
-.eyebrow {
-  margin: 0 0 8px;
-  color: #2f7d46;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
 h1 {
   margin: 0;
   font-size: 3rem;
@@ -113,4 +104,98 @@ h1 {
   background: #2f7d46;
   color: white;
   font-weight: 700;
+}
+
+/* Forecast section */
+.forecast-section {
+  margin-top: 50px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.section-description {
+  margin: 0 0 24px;
+  color: #5f6f64;
+  line-height: 1.5;
+}
+
+/* Forecast grid */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+/* Forecast card */
+.forecast-card {
+  border: 1px solid #d8e5dc;
+  border-radius: 24px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(23, 32, 26, 0.06);
+}
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.forecast-day {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.forecast-date {
+  margin: 0;
+  color: #5f6f64;
+  font-size: 0.9rem;
+}
+
+.forecast-body {
+  margin-top: 20px;
+}
+
+.forecast-weather {
+  margin: 0 0 16px;
+  color: #5f6f64;
+}
+
+.forecast-score {
+  margin: 0;
+  font-size: 2.6rem;
+  line-height: 1;
+  font-weight: 900;
+  color: #2f7d46;
+}
+
+.forecast-label {
+  margin: 6px 0 12px;
+  font-weight: 700;
+  color: #2f7d46;
+}
+
+.forecast-temperature {
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.forecast-reasons {
+  margin: 0;
+  padding-left: 18px;
+  color: #333b36;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }

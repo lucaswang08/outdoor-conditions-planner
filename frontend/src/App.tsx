@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import LocationSearch from './components/LocationSearch'
 import ActivitySelector from './components/ActivitySelector'
+import ForecastGrid from './components/ForecastGrid'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <LocationSearch />
       <ActivitySelector />
     </section>
+      <ForecastGrid />
     </main>
   )
 }
