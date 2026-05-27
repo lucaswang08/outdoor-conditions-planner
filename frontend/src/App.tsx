@@ -5,10 +5,12 @@ import ForecastGrid from './components/ForecastGrid'
 
 import {useEffect, useState} from 'react'
 import { getHealth } from './api/backend'
+import type { Location } from './types/forecast'
 
 function App() {
 
   const [backendStatus, setBackendStatus] = useState("Checking...")
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
 
   useEffect(() => {
     getHealth()
@@ -23,11 +25,14 @@ function App() {
   return (
     <main className="app-shell">
       <Header />
+
       <p>Backend Status: {backendStatus}</p>
-    <section className="controls-panel">
-      <LocationSearch />
-      <ActivitySelector />
-    </section>
+
+      <section className="controls-panel">
+        <LocationSearch onSelectLocation={setSelectedLocation} />
+        <ActivitySelector />
+      </section>
+
       <ForecastGrid />
     </main>
   )

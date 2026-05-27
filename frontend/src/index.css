@@ -58,11 +58,15 @@ h1 {
   gap: 50px;
 }
 
+.location-search-wrapper {
+  width: 560px;
+  position: relative;
+}
+
 .location-search {
-  margin-top: 36px;
   display: flex;
   gap: 12px;
-  width: 500px;
+  width: 100%;
 }
 
 .location-input {
@@ -82,6 +86,54 @@ h1 {
   color: white;
   font-weight: 700;
   cursor: pointer;
+}
+
+.location-results {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 8px;
+  border: 1px solid #d8e5dc;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 16px 40px rgba(23, 32, 26, 0.12);
+}
+
+.location-result {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #17201a;
+  text-align: left;
+  cursor: pointer;
+}
+
+.location-result:hover {
+  background: #f0f6f2;
+}
+
+.location-result span {
+  color: #5f6f64;
+  font-size: 0.9rem;
+}
+
+.search-error {
+  margin-top: 12px;
+  color: #b42318;
 }
 
 .activities {
