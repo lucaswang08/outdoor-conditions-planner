@@ -40,7 +40,7 @@ class DailySummary(BaseModel):
     weather_code: int
     sunrise: str
     sunset: str
-    daylight_hours: float
+    daylight_duration: float
 
 class HourlyConditions(BaseModel):
     time: str
@@ -57,6 +57,7 @@ class HourlyConditions(BaseModel):
     visibility: DistanceValue
     wind_speed: SpeedValue
     wind_gust: SpeedValue
+    relative_humidity: PercentageValue
     weather_code: int
     
 class WeatherDay(BaseModel):
