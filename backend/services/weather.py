@@ -3,77 +3,100 @@ def get_forecast(latitude: float, longitude: float):
     "location": {
       "latitude": latitude,
       "longitude": longitude,
+      "timezone": "Vancouver Time (PST)",
     },
-    "daily": [
+    "forecast": [
       {
-        "id": 1,
-        "day": "Mon",
-        "date": "May 27",
-        "weather": "Sunny",
-        "score": 82,
-        "label": "Excellent",
-        "temperature": "12°C",
-        "reasons": ["Low rain chance", "Mild temperature", "Light wind"],
-      },
-      {
-        "id": 2,
-        "day": "Tue",
-        "date": "May 28",
-        "weather": "Partly cloudy",
-        "score": 74,
-        "label": "Good",
-        "temperature": "14°C",
-        "reasons": ["Low rain chance", "Comfortable temp", "Light wind"],
-      },
-      {
-        "id": 3,
-        "day": "Wed",
-        "date": "May 29",
-        "weather": "Cloudy",
-        "score": 61,
-        "label": "Fair",
-        "temperature": "10°C",
-        "reasons": ["Some cloud cover", "Slight chance rain", "Moderate wind"],
-      },
-      {
-        "id": 4,
-        "day": "Thu",
-        "date": "May 30",
-        "weather": "Rainy",
-        "score": 45,
-        "label": "Poor",
-        "temperature": "8°C",
-        "reasons": ["High rain chance", "Cool temp", "Strong wind"],
-      },
-      {
-        "id": 5,
-        "day": "Fri",
-        "date": "May 31",
-        "weather": "Stormy",
-        "score": 30,
-        "label": "Very Poor",
-        "temperature": "6°C",
-        "reasons": ["High rain chance", "Cold temp", "Strong wind"],
-      },
-      {
-        "id": 6,
-        "day": "Sat",
-        "date": "Jun 1",
-        "weather": "Sunny",
-        "score": 85,
-        "label": "Excellent",
-        "temperature": "15°C",
-        "reasons": ["Low rain chance", "Mild temperature", "Light wind"],
-      },
-      {
-        "id": 7,
-        "day": "Sun",
-        "date": "Jun 2",
-        "weather": "Partly cloudy",
-        "score": 78,
-        "label": "Good",
-        "temperature": "13°C",
-        "reasons": ["Low rain chance", "Comfortable temp", "Light wind"],
+        "date": "2026-01-01",
+        "summary": {
+          "temperature": {
+            "min": 10.0,
+            "max": 20.0,
+            "unit": "celsius"
+          },
+          "precipitation_sum": {
+            "value": 0.0,
+            "unit": "mm"
+          },
+          "snowfall_sum": {
+            "value": 0.0,
+            "unit": "cm"
+          },
+          "precipitation_probability_max": {
+            "value": 20.0,
+            "unit": "percent"
+          },
+          "wind_speed_max": {
+            "value": 12.0,
+            "unit": "km/h"
+          },
+          "wind_gust_max": {
+            "value": 20.0,
+            "unit": "km/h"
+          },
+          "weather_code": 1,
+          "sunrise": "2026-01-01T08:05",
+          "sunset": "2026-01-01T16:25",
+          "daylight_hours": 8.33
+        },
+        "hourly": [
+          {
+            "time": "2026-01-01T00:00",
+            "temperature": {
+              "value": 12.0,
+              "unit": "celsius"
+            },
+            "apparent_temperature": {
+              "value": 10.0,
+              "unit": "celsius"
+            },
+            "precipitation": {
+              "value": 0.0,
+              "unit": "mm"
+            },
+            "precipitation_probability": {
+              "value": 10.0,
+              "unit": "percent"
+            },
+            "snowfall": {
+              "value": 0.0,
+              "unit": "cm"
+            },
+            "snow_depth": {
+              "value": 0.0,
+              "unit": "cm"
+            },
+            "cloud_cover": {
+              "value": 20.0,
+              "unit": "percent"
+            },
+            "cloud_cover_low": {
+              "value": 10.0,
+              "unit": "percent"
+            },
+            "cloud_cover_mid": {
+              "value": 5.0,
+              "unit": "percent"
+            },
+            "cloud_cover_high": {
+              "value": 5.0,
+              "unit": "percent"
+            },
+            "visibility": {
+              "value": 10.0,
+              "unit": "km"
+            },
+            "wind_speed": {
+              "value": 8.0,
+              "unit": "km/h"
+            },
+            "wind_gust": {
+              "value": 15.0,
+              "unit": "km/h"
+            },
+            "weather_code": 1
+          }
+        ]
       }
     ],
   }

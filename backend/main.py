@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from services.geocoding import search_location
 from services.weather import get_forecast
 
+from models.weather import WeatherForecast
+
 app = FastAPI(
   title="Outdoor Conditions Planner API",
   description="Backend API for location search, weather forecasts, and outdoor condition scoring.",
@@ -30,6 +32,7 @@ def geocode_location(query: str):
     "results": results
   }
 
-@app.get("/api/weather")
+@app.get("/api/weather", response_model=WeatherForecast)
 def weather_forecast(latitude: float, longitude: float):
   return get_forecast(latitude, longitude)
+
