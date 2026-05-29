@@ -10,13 +10,42 @@ export type Location = {
   longitude: number
 }
 
-export type ForecastDay = {
-  id: number
-  day: string
+export type ValueUnit = {
+  value: number
+  unit: string
+}
+
+export type DailyTemperature = {
+  min: number
+  max: number
+  unit: string
+}
+
+export type WeatherResponseLocation = {
+  latitude: number
+  longitude: number
+  timezone: string
+}
+
+export type DailyForecast = {
+  temperature: DailyTemperature
+  precipitation_sum: ValueUnit
+  snowfall_sum: ValueUnit
+  precipitation_probability_max: ValueUnit
+  wind_speed_max: ValueUnit
+  wind_gust_max: ValueUnit
+  weather_code: number
+  sunrise: string
+  sunset: string
+  daylight_duration: number
+}
+
+export type WeatherDay = {
   date: string
-  weather: string
-  score: number
-  label: ForecastLabel
-  temperature: string
-  reasons: string[]
+  summary: DailyForecast
+}
+
+export type WeatherForecast = {
+  location: WeatherResponseLocation
+  forecast: WeatherDay[]
 }

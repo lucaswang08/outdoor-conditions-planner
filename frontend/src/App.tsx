@@ -4,11 +4,14 @@ import ActivitySelector from './components/ActivitySelector'
 import ForecastGrid from './components/ForecastGrid'
 
 import {useEffect, useState} from 'react'
-import { getHealth } from './api/backend'
-import type { Location } from './types/forecast'
+import { getHealth, getWeatherForecast } from './api/backend'
+import type { Location, WeatherForecast } from './types/forecast'
 
 function App() {
 
+  const [weatherForecast, setWeatherForecast] = useState<WeatherForecast | null>(null)
+  const [forecastLoading, setForecastLoading] = useState(false)
+  const [forecastError, setForecastError] = useState("")
   const [backendStatus, setBackendStatus] = useState("Checking...")
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
 
@@ -22,6 +25,29 @@ function App() {
       })
   }, [])
 
+  useEffect(() => {
+    if (!selectedLocation) return
+
+    async function loadForecast() {
+      setForecastLoading(true)
+      setForecastError("")
+
+      try {
+        const data = await getWeatherForecast(
+          selectedLocation.latitude,
+          selectedLocation.longitude
+        )
+        setWeatherForecast(data)
+      } catch {
+        setForecastError("Failed to load forecast")
+      } finally {
+        setForecastLoading(false)
+      }
+    }
+
+    loadForecast()
+  }, [selectedLocation])
+
   return (
     <main className="app-shell">
       <Header />
@@ -33,7 +59,11 @@ function App() {
         <ActivitySelector />
       </section>
 
-      <ForecastGrid />
+      <ForecastGrid 
+        forecast={weatherForecast}
+        loading={forecastLoading}
+        error={forecastError}
+      />
     </main>
   )
 }

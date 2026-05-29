@@ -1,7 +1,25 @@
-import { mockForecast } from "../data/mockForecast"
+import type { WeatherForecast } from "../types/forecast"
 import ForecastCard from "./ForecastCard"
 
-function ForecastGrid() {
+type ForecastGridProps = {
+  forecast: WeatherForecast | null
+  loading: boolean
+  error: string
+}
+
+function ForecastGrid({ forecast, loading, error }: ForecastGridProps) {
+  if (loading) {
+    return <p>Loading forecast...</p>
+  }
+  
+  if (error) {
+    return <p>{error}</p>
+  }
+
+  if (!forecast) {
+    return <p>No forecast available. Please select a location.</p>
+  }
+
   return (
     <section className="forecast-section">
       <div className="section-heading">
@@ -14,8 +32,8 @@ function ForecastGrid() {
         </p>
 
       <div className="forecast-grid">
-        {mockForecast.map((forecast) => (
-          <ForecastCard key={forecast.id} forecast={forecast} />
+        {forecast.forecast.map((day) => (
+          <ForecastCard key={day.date} forecast={day} />
         ))}
       </div>
     </section>
