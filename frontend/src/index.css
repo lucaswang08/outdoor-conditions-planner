@@ -1,4 +1,4 @@
-/* Reset / global styles */
+/* Base */
 * {
   box-sizing: border-box;
 }
@@ -37,7 +37,7 @@ h1 {
 
 .subtitle {
   margin: 12px 0 0;
-  color: #5f6f64;
+  color: #617166;
   font-size: 1.2rem;
 }
 
@@ -45,7 +45,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #17201a;
+  color: #151e18;
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -57,6 +57,8 @@ h1 {
   align-items: flex-end;
   gap: 50px;
 }
+
+/* Location search */
 
 .location-search-wrapper {
   width: 560px;
@@ -82,7 +84,7 @@ h1 {
   padding: 14px 20px;
   border: none;
   border-radius: 14px;
-  background: #2f7d46;
+  background: #31884b;
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -136,6 +138,8 @@ h1 {
   color: #b42318;
 }
 
+/* Activity selection */
+
 .activities {
   display: flex;
   gap: 12px;
@@ -146,19 +150,20 @@ h1 {
   border: 1px solid #d8e5dc;
   border-radius: 14px;
   background: white;
-  color: #17201a;
+  color: #18201b;
   font-weight: 500;
   cursor: pointer;
 }
 
 .activity-button.active {
-  border-color: #2f7d46;
-  background: #2f7d46;
+  border-color: #31884b;
+  background: #31884b;
   color: white;
   font-weight: 700;
 }
 
 /* Forecast section */
+
 .forecast-section {
   margin-top: 50px;
 }
@@ -185,7 +190,7 @@ h1 {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(150px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 /* Forecast card */
@@ -216,13 +221,21 @@ h1 {
   font-size: 0.9rem;
 }
 
-.forecast-body {
-  margin-top: 20px;
+.forecast-icon {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 18px auto 12px;
+  color: #f5b400;
+  font-size: 2rem;
 }
 
-.forecast-weather {
-  margin: 0 0 16px;
-  color: #5f6f64;
+.forecast-score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .forecast-score {
@@ -233,21 +246,63 @@ h1 {
   color: #2f7d46;
 }
 
-.forecast-label {
-  margin: 6px 0 12px;
-  font-weight: 700;
-  color: #2f7d46;
+.forecast-score.Excellent{
+  color: #0095ff;
 }
 
-.forecast-temperature {
-  margin: 0 0 16px;
-  font-weight: 700;
+.forecast-score.Good{
+  color: #4f9f3d;
+}
+
+.forecast-score.Fair{
+  color: #e0a500;
+}
+
+.forecast-score.Poor{
+  color: #ef6c22;
 }
 
 .forecast-reasons {
-  margin: 0;
+  margin: 16px 0 0;
   padding-left: 18px;
-  color: #333b36;
+  color: #232725;
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.forecast-label {
+  margin: 6px 0 12px;
+  font-weight: 400;
+}
+
+
+.score-track {
+  width: 100%;
+  height: 8px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eee9;
+}
+
+.score-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #58bd57;
+}
+
+.score-fill.Excellent {
+  background: #0095ff;
+}
+
+.score-fill.Good {
+  background: #4f9f3d;
+}
+
+.score-fill.Fair {
+  background: #e0a500;
+}
+
+.score-fill.Poor {
+  background: #ef6c22;
 }
