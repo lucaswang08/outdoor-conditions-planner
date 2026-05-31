@@ -14,29 +14,34 @@ function getDateFormat(dateStr: string) {
   return formatted
 }
 
-function getConditionScore() {
-  return Math.floor(Math.random() * 55) + 40
+function getActivityScore(weather: WeatherDay, activity: string) {
+  return weather.scores.find(score => score.activity === activity)
 }
+// function getConditionScore() {
 
-function getScoreLabel(score: number) {
-  if (score >= 80) return "Excellent"
-  if (score >= 70) return "Good"
-  if (score >= 60) return "Fair"
-  return "Poor"
-}
+//   return Math.floor(Math.random() * 55) + 40
+// }
 
-function getReasons() {
-  // const { summary } = forecast
-  const reasons = ["Reason 1", "Reason 2", "Reason 3"]
-  return reasons
-}
+// function getScoreLabel(score: number) {
+//   if (score >= 80) return "Excellent"
+//   if (score >= 70) return "Good"
+//   if (score >= 60) return "Fair"
+//   return "Poor"
+// }
+
+// function getReasons() {
+//   // const { summary } = forecast
+//   const reasons = ["Reason 1", "Reason 2", "Reason 3"]
+//   return reasons
+// }
 
 function ForecastCard({ forecast }: ForecastCardProps) {
   // const { summary } = forecast
 
-  const score = getConditionScore()
-  const reasons = getReasons()
-  const label = getScoreLabel(score)
+  const activityScore = getActivityScore(forecast, "hiking") // TODO: pass activity as prop
+  const score = activityScore.score
+  const label = activityScore.label
+  const reasons = activityScore.reasons.map(reason => reason.message)
 
   return (
     <div className="forecast-card">

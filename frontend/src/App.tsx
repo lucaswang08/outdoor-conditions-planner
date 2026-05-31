@@ -28,14 +28,16 @@ function App() {
   useEffect(() => {
     if (!selectedLocation) return
 
+    const location = selectedLocation
+
     async function loadForecast() {
       setForecastLoading(true)
       setForecastError("")
 
       try {
         const data = await getWeatherForecast(
-          selectedLocation.latitude,
-          selectedLocation.longitude
+          location.latitude,
+          location.longitude
         )
         setWeatherForecast(data)
       } catch {

@@ -1,7 +1,7 @@
 from typing import Literal
 from pydantic import BaseModel
 
-Activity = Literal["hiking", "skiing", "stargazing"]
+Activity = Literal["hiking", "snowboarding", "stargazing"]
 
 ScoreLabel = Literal["Excellent", "Good", "Fair", "Poor"]
 

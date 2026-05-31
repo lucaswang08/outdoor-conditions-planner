@@ -1,7 +1,22 @@
 export type Activity = "hiking" | "snowboarding" | "stargazing"
 
-export type ForecastLabel = "Excellent" | "Good" | "Fair" | "Poor"
+export type ScoreLabel = "Excellent" | "Good" | "Fair" | "Poor"
 
+export type Impact = "good" | "bad" | "neutral"
+
+export type Reason = {
+  factor: string
+  impact: Impact
+  message: string
+}
+
+export type Score = {
+  activity: Activity
+  score: number
+  label: ScoreLabel
+  reasons: Reason[]
+}
+ 
 export type Location = {
   name: string
   region: string
@@ -43,6 +58,7 @@ export type DailyForecast = {
 export type WeatherDay = {
   date: string
   summary: DailyForecast
+  scores: Score[]
 }
 
 export type WeatherForecast = {

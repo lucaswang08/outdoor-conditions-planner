@@ -2,6 +2,76 @@ import httpx
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
+def get_scores_for_forecast(): #temporary
+  return [
+    {
+      "activity": "hiking",
+      "score": 82,
+      "label": "Excellent",
+      "reasons": [
+        {
+          "factor": "precipitation",
+          "impact": "good",
+          "message": "Low rain chance."
+        },
+        {
+          "factor": "temperature",
+          "impact": "good",
+          "message": "Mild temperatures."
+        },
+        {
+          "factor": "wind_speed",
+          "impact": "bad",
+          "message": "High winds."
+        }
+      ]
+    },
+    {
+      "activity": "snowboarding",
+      "score": 30,
+      "label": "Poor",
+      "reasons": [
+        {
+          "factor": "precipitation",
+          "impact": "good",
+          "message": "Low rain chance."
+        },
+        {
+          "factor": "temperature",
+          "impact": "good",
+          "message": "Mild temperatures."
+        },
+        {
+          "factor": "wind_speed",
+          "impact": "bad",
+          "message": "High winds."
+        }
+      ]
+    },
+    {"activity": "stargazing",
+      "score": 70,
+      "label": "Good",
+      "reasons": [
+        {
+          "factor": "precipitation",
+          "impact": "good",
+          "message": "Low rain chance."
+        },
+        {
+          "factor": "temperature",
+          "impact": "good",
+          "message": "Mild temperatures."
+        },
+        {
+          "factor": "wind_speed",
+          "impact": "bad",
+          "message": "High winds."
+        }
+      ]
+    }
+  ]
+  
+
 def fetch_open_meteo_forecast(latitude: float, longitude: float):
   params = {
     "latitude": latitude,
@@ -159,7 +229,8 @@ def normalize_open_meteo_data(data: dict):
         "sunset": value_at(daily_data.get("sunset"), daily_index),
         "daylight_duration": value_at(daily_data.get("daylight_duration"), daily_index) 
       },
-      "hourly": hourly
+      "hourly": hourly,
+      "scores": get_scores_for_forecast()
     })
 
   return {
