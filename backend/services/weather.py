@@ -1,31 +1,11 @@
 import httpx
+from scoring.hiking import get_hiking_score
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
-def get_scores_for_forecast(): #temporary
+def get_scores_for_forecast(day: dict):
   return [
-    {
-      "activity": "hiking",
-      "score": 82,
-      "label": "Excellent",
-      "reasons": [
-        {
-          "factor": "precipitation",
-          "impact": "good",
-          "message": "Low rain chance."
-        },
-        {
-          "factor": "temperature",
-          "impact": "good",
-          "message": "Mild temperatures."
-        },
-        {
-          "factor": "wind_speed",
-          "impact": "bad",
-          "message": "High winds."
-        }
-      ]
-    },
+    get_hiking_score(day),
     {
       "activity": "snowboarding",
       "score": 30,
@@ -79,6 +59,7 @@ def fetch_open_meteo_forecast(latitude: float, longitude: float):
     "daily": ",".join([
       "temperature_2m_min",
       "temperature_2m_max",
+      "apparent_temperature_max",
       "precipitation_sum",
       "snowfall_sum",
       "precipitation_probability_max",
@@ -196,12 +177,13 @@ def normalize_open_meteo_data(data: dict):
         "weather_code": value_at(hourly_data.get("weather_code"), hourly_index)
       })
 
-    forecast.append({
+    day = {
       "date": date,
       "summary": {
         "temperature": {
           "min": value_at(daily_data.get("temperature_2m_min"), daily_index),
           "max": value_at(daily_data.get("temperature_2m_max"), daily_index),
+          "apparent_max": value_at(daily_data.get("apparent_temperature_max"), daily_index),
           "unit": daily_units.get("temperature_2m_min", "celsius")
         },
         "precipitation_sum": {
@@ -230,8 +212,9 @@ def normalize_open_meteo_data(data: dict):
         "daylight_duration": value_at(daily_data.get("daylight_duration"), daily_index) 
       },
       "hourly": hourly,
-      "scores": get_scores_for_forecast()
-    })
+    }
+    day["scores"] = get_scores_for_forecast(day)
+    forecast.append(day)
 
   return {
     "location": {

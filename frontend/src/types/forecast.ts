@@ -33,6 +33,7 @@ export type ValueUnit = {
 export type DailyTemperature = {
   min: number
   max: number
+  apparent_max: number
   unit: string
 }
 
