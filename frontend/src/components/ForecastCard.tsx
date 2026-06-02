@@ -2,6 +2,7 @@ import type { WeatherDay } from "../types/forecast"
 
 type ForecastCardProps = {
   forecast: WeatherDay
+  selectedActivity: string
 }
 
 function getWeekday(dateStr: string) {
@@ -35,10 +36,10 @@ function getActivityScore(weather: WeatherDay, activity: string) {
 //   return reasons
 // }
 
-function ForecastCard({ forecast }: ForecastCardProps) {
+function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
   // const { summary } = forecast
 
-  const activityScore = getActivityScore(forecast, "hiking") // TODO: pass activity as prop
+  const activityScore = getActivityScore(forecast, selectedActivity)
   const score = activityScore.score
   const label = activityScore.label
   const reasons = activityScore.reasons.map(reason => reason.message)

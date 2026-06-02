@@ -5,9 +5,10 @@ type ForecastGridProps = {
   forecast: WeatherForecast | null
   loading: boolean
   error: string
+  selectedActivity: string
 }
 
-function ForecastGrid({ forecast, loading, error }: ForecastGridProps) {
+function ForecastGrid({ forecast, loading, error, selectedActivity }: ForecastGridProps) {
   if (loading) {
     return <p>Loading forecast...</p>
   }
@@ -33,7 +34,7 @@ function ForecastGrid({ forecast, loading, error }: ForecastGridProps) {
 
       <div className="forecast-grid">
         {forecast.forecast.map((day) => (
-          <ForecastCard key={day.date} forecast={day} />
+          <ForecastCard key={day.date} forecast={day} selectedActivity={selectedActivity} />
         ))}
       </div>
     </section>

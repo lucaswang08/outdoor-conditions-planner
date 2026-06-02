@@ -5,7 +5,7 @@ import ForecastGrid from './components/ForecastGrid'
 
 import {useEffect, useState} from 'react'
 import { getHealth, getWeatherForecast } from './api/backend'
-import type { Location, WeatherForecast } from './types/forecast'
+import type { Location, WeatherForecast, Activity } from './types/forecast'
 
 function App() {
 
@@ -14,6 +14,7 @@ function App() {
   const [forecastError, setForecastError] = useState("")
   const [backendStatus, setBackendStatus] = useState("Checking...")
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
+  const [selectedActivity, setSelectedActivity] = useState<Activity>("hiking")
 
   useEffect(() => {
     getHealth()
@@ -58,13 +59,17 @@ function App() {
 
       <section className="controls-panel">
         <LocationSearch onSelectLocation={setSelectedLocation} />
-        <ActivitySelector />
+        <ActivitySelector 
+          selectedActivity={selectedActivity}
+          onSelectActivity={setSelectedActivity}
+        />
       </section>
 
       <ForecastGrid 
         forecast={weatherForecast}
         loading={forecastLoading}
         error={forecastError}
+        selectedActivity={selectedActivity}
       />
     </main>
   )
