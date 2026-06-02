@@ -1,5 +1,6 @@
 import httpx
 from scoring.hiking import get_hiking_score
+from scoring.stargazing import get_stargazing_score
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
@@ -28,27 +29,7 @@ def get_scores_for_forecast(day: dict):
         }
       ]
     },
-    {"activity": "stargazing",
-      "score": 70,
-      "label": "Good",
-      "reasons": [
-        {
-          "factor": "precipitation",
-          "impact": "good",
-          "message": "Low rain chance."
-        },
-        {
-          "factor": "temperature",
-          "impact": "good",
-          "message": "Mild temperatures."
-        },
-        {
-          "factor": "wind_speed",
-          "impact": "bad",
-          "message": "High winds."
-        }
-      ]
-    }
+    get_stargazing_score(day)
   ]
   
 

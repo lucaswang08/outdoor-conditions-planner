@@ -2,14 +2,14 @@ from models.scoring import ScoreLabel, Score
 
 def precipitation_score(precipitation_chance: float) -> tuple[int, str, str]:
     if precipitation_chance <= 10:
-        return 100, "Low rain chance", "good"
+        return 100, "No rain expected", "good"
     if precipitation_chance <= 30:
-        return 80, "Low rain chance", "good"
+        return 80, "Low chance of rain", "good"
     if precipitation_chance <= 50:
-        return 50, "Moderate rain chance", "bad"
+        return 40, "Moderate chance of rain", "bad"
     if precipitation_chance <= 70:
-        return 30, "High rain chance", "bad"
-    return 10, "Very high rain chance", "bad"
+        return 20, "High chance of rain", "bad"
+    return 10, "Very high chance of rain", "bad"
 
 def temperature_score(max_temperature: float) -> tuple[int, str, str]:
     if 10 <= max_temperature <= 20:
