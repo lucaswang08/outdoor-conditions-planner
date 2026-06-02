@@ -26,11 +26,11 @@ def cloud_coverage(hours: list[dict]) -> float:
 
 def cloud_cover_score(hours: list[dict]) -> tuple[int, str, str]:
     cloud_cover = cloud_coverage(hours)
-    if cloud_cover <= 100:
+    if cloud_cover <= 10:
         return 100, "Very clear skies", "good"
     if cloud_cover <= 30:
         return 80, "Mostly clear skies", "good"
-    if cloud_cover <= 60:
+    if cloud_cover <= 40:
         return 50, "Cloudy", "bad"
     if cloud_cover <= 80:
         return 20, "Very cloudy", "bad"
@@ -55,7 +55,7 @@ def precipitation_score(hours: list[dict]) -> tuple[int, str, str]:
         return 40, "Moderate chance of rain", "bad"
     if precipitation_chance <= 70:
         return 20, "High chance of rain", "bad"
-    return 10, "Very high chance of rain", "bad"
+    return 10, "High chance of rain", "bad"
 
 def get_humidity(hours: list[dict]) -> float:
     total_humidity = 0
@@ -115,7 +115,7 @@ def get_stargazing_score(weather: dict) -> Score:
             "message": humidity_message
         })
 
-    score = cloud_score_value * 0.4 + precipitation_score_value * 0.4 + humidity_score_value * 0.2
+    score = round(cloud_score_value * 0.4 + precipitation_score_value * 0.4 + humidity_score_value * 0.2)
 
     factor_priority = {
         "cloud_cover": 1,

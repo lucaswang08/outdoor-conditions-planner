@@ -9,7 +9,7 @@ def precipitation_score(precipitation_chance: float) -> tuple[int, str, str]:
         return 40, "Moderate chance of rain", "bad"
     if precipitation_chance <= 70:
         return 20, "High chance of rain", "bad"
-    return 10, "Very high chance of rain", "bad"
+    return 10, "High chance of rain", "bad"
 
 def temperature_score(max_temperature: float) -> tuple[int, str, str]:
     if 10 <= max_temperature <= 20:
