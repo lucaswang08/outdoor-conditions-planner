@@ -1,34 +1,14 @@
 import httpx
 from scoring.hiking import get_hiking_score
 from scoring.stargazing import get_stargazing_score
+from scoring.snowboarding import get_snowboarding_score
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
 def get_scores_for_forecast(day: dict):
   return [
     get_hiking_score(day),
-    {
-      "activity": "snowboarding",
-      "score": 30,
-      "label": "Poor",
-      "reasons": [
-        {
-          "factor": "precipitation",
-          "impact": "good",
-          "message": "Low rain chance."
-        },
-        {
-          "factor": "temperature",
-          "impact": "good",
-          "message": "Mild temperatures."
-        },
-        {
-          "factor": "wind_speed",
-          "impact": "bad",
-          "message": "High winds."
-        }
-      ]
-    },
+    get_snowboarding_score(day),
     get_stargazing_score(day)
   ]
   
