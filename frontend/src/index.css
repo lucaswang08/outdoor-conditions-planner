@@ -222,13 +222,11 @@ h1 {
 }
 
 .forecast-icon {
-  display: grid;
-  place-items: center;
-  width: 100px;
-  height: 100px;
+  display: block;
+  width: 56px;
+  height: 56px;
   margin: 18px auto 12px;
-  color: #f5b400;
-  font-size: 2rem;
+  object-fit: contain;
 }
 
 .forecast-score-block {
