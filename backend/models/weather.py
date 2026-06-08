@@ -9,6 +9,7 @@ class Location(BaseModel):
 class DailyTemperature(BaseModel):
     min: float
     max: float
+    apparent_max: float
     unit: str
 
 class TemperatureValue(BaseModel):

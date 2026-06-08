@@ -67,15 +67,16 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
   // const { summary } = forecast
 
   const activityScore = getActivityScore(forecast, selectedActivity)
+
+  if (!activityScore) {
+    return null
+  }
+
   const score = activityScore.score
   const label = activityScore.label
   const reasons = activityScore.reasons.map(reason => reason.message)
 
   const weather = getWeatherDisplay(forecast.summary.weather_code)
-
-  if (!activityScore) {
-    return null
-  }
 
   return (
     <div className="forecast-card">
