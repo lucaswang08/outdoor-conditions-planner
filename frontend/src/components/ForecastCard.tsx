@@ -6,13 +6,16 @@ type ForecastCardProps = {
 }
 
 function getWeekday(dateStr: string) {
-  const date = new Date(dateStr)
+  const date = new Date(`${dateStr}T12:00:00`)
   return date.toLocaleDateString(undefined, { weekday: "short" })
 }
 
 function getDateFormat(dateStr: string) {
-  const formatted = new Date(dateStr).toLocaleDateString(undefined, { month: "short", day: "numeric" })
-  return formatted
+  const date = new Date(`${dateStr}T12:00:00`)
+  return date.toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+  })
 }
 
 function getActivityScore(weather: WeatherDay, activity: string) {

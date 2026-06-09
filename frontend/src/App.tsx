@@ -4,7 +4,7 @@ import ActivitySelector from './components/ActivitySelector'
 import ForecastGrid from './components/ForecastGrid'
 
 import {useEffect, useState} from 'react'
-import { getHealth, getWeatherForecast } from './api/backend'
+import {getWeatherForecast } from './api/backend'
 import type { Location, WeatherForecast, Activity } from './types/forecast'
 
 function App() {
@@ -20,19 +20,19 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecast | null>(null)
   const [forecastLoading, setForecastLoading] = useState(false)
   const [forecastError, setForecastError] = useState("")
-  const [backendStatus, setBackendStatus] = useState("Checking...")
+  // const [backendStatus, setBackendStatus] = useState("Checking...")
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(DEFAULT_LOCATION)
   const [selectedActivity, setSelectedActivity] = useState<Activity>("hiking")
 
-  useEffect(() => {
-    getHealth()
-      .then((data) => {
-        setBackendStatus(data.status)
-      })
-      .catch(() => {
-        setBackendStatus("offline")
-      })
-  }, [])
+  // useEffect(() => {
+  //   getHealth()
+  //     .then((data) => {
+  //       setBackendStatus(data.status)
+  //     })
+  //     .catch(() => {
+  //       setBackendStatus("offline")
+  //     })
+  // }, [])
 
   useEffect(() => {
     if (!selectedLocation) return
@@ -63,7 +63,7 @@ function App() {
     <main className="app-shell">
       <Header />
 
-      <p>Backend Status: {backendStatus}</p>
+      {/* <p>Backend Status: {backendStatus}</p> */}
 
       <section className="controls-panel">
         <LocationSearch onSelectLocation={setSelectedLocation} />

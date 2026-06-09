@@ -304,3 +304,41 @@ h1 {
 .score-fill.Poor {
   background: #ef6c22;
 }
+
+.best-days-section {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border: 1px solid #d8e5dc;
+  border-radius: 18px;
+  background: #f2fcf4;
+  box-shadow: 0 12px 30px rgba(23, 32, 26, 0.05);
+}
+
+.best-days-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.best-days-title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.best-days-dates {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 1000;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.best-days-text {
+  margin: 0;
+  color: #5f6f64;
+  line-height: 1.5;
+}
