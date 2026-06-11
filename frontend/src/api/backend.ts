@@ -1,4 +1,5 @@
 import type { Location, WeatherForecast } from "../types/forecast";
+import type { TripAdvice, TripAdviceRequest } from "../types/advice";
 
 const API_BASE_URL = "http://localhost:8000";
 
@@ -23,6 +24,20 @@ export async function getWeatherForecast(latitude: number, longitude: number): P
   const response = await fetch(`${API_BASE_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`);
   if (!response.ok) {
     throw new Error("Failed to get weather forecast");
+  }
+  return response.json();
+}
+
+export async function getTripAdvice(request: TripAdviceRequest): Promise<TripAdvice> {
+  const response = await fetch(`${API_BASE_URL}/api/advice`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(request)
+  });
+  if (!response.ok) {
+    throw new Error("Failed to get trip advice");
   }
   return response.json();
 }

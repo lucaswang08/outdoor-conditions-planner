@@ -342,3 +342,24 @@ h1 {
   color: #5f6f64;
   line-height: 1.5;
 }
+
+.advice-request {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.advice-button {
+  border: 1px solid #d7e5dc;
+  background: #f6fbf8;
+  color: #26733f;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.advice-button:hover {
+  background: #eaf6ee;
+}

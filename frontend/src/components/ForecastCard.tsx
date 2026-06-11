@@ -112,6 +112,12 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
           style={{ width: `${score}%` }}
         />
       </div>
+
+      <div className="advice-request">
+        <button className="advice-button">
+          AI Trip Advice
+        </button>
+      </div>
     </div>
   )
 }
