@@ -1,8 +1,11 @@
-import type { WeatherDay } from "../types/forecast"
+import type { Activity, WeatherDay } from "../types/forecast"
+import { useState } from "react"
+import { getTripAdvice } from "../api/backend"
+import type { TripAdvice } from "../types/advice"
 
 type ForecastCardProps = {
   forecast: WeatherDay
-  selectedActivity: string
+  selectedActivity: Activity
 }
 
 function getWeekday(dateStr: string) {
@@ -18,7 +21,7 @@ function getDateFormat(dateStr: string) {
   })
 }
 
-function getActivityScore(weather: WeatherDay, activity: string) {
+function getActivityScore(weather: WeatherDay, activity: Activity) {
   return weather.scores.find(score => score.activity === activity)
 }
 
@@ -81,6 +84,29 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
 
   const weather = getWeatherDisplay(forecast.summary.weather_code)
 
+  const [advice, setAdvice] = useState<TripAdvice | null>(null)
+  const [adviceLoading, setAdviceLoading] = useState(false)
+  const [adviceError, setAdviceError] = useState<string | null>(null)
+
+  const handleGetAdvice = async () => {
+    setAdviceLoading(true)
+    setAdviceError(null)
+
+    try {
+      const data = await getTripAdvice({
+        activity: selectedActivity,
+        date: forecast.date,
+        weather: forecast.summary,
+        score: activityScore
+      })
+      setAdvice(data)
+    } catch {
+      setAdviceError("Failed to get advice. Please try again.")
+    } finally {
+      setAdviceLoading(false)
+    }
+  }
+
   return (
     <div className="forecast-card">
       <div className="forecast-header">
@@ -114,8 +140,12 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
       </div>
 
       <div className="advice-request">
-        <button className="advice-button">
-          AI Trip Advice
+        <button 
+          className="advice-button"
+          onClick={handleGetAdvice}
+          disabled={adviceLoading}
+        >
+          {adviceLoading ? "Loading..." : "AI Trip Advice"}
         </button>
       </div>
     </div>
