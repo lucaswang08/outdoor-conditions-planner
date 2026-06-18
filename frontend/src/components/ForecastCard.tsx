@@ -72,7 +72,13 @@ function getWeatherDisplay(weatherCode: number) {
 function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
   // const { summary } = forecast
 
+  const [advice, setAdvice] = useState<TripAdvice | null>(null)
+  const [adviceLoading, setAdviceLoading] = useState(false)
+  const [adviceError, setAdviceError] = useState<string | null>(null)
+  const [showAdvice, setShowAdvice] = useState(false)
+
   const activityScore = getActivityScore(forecast, selectedActivity)
+  
 
   if (!activityScore) {
     return null
@@ -83,10 +89,6 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
   const reasons = activityScore.reasons.map(reason => reason.message)
 
   const weather = getWeatherDisplay(forecast.summary.weather_code)
-
-  const [advice, setAdvice] = useState<TripAdvice | null>(null)
-  const [adviceLoading, setAdviceLoading] = useState(false)
-  const [adviceError, setAdviceError] = useState<string | null>(null)
 
   const handleGetAdvice = async () => {
     setAdviceLoading(true)
@@ -100,6 +102,7 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
         score: activityScore
       })
       setAdvice(data)
+      setShowAdvice(true)
     } catch {
       setAdviceError("Failed to get advice. Please try again.")
     } finally {
@@ -148,6 +151,27 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
           {adviceLoading ? "Loading..." : "AI Trip Advice"}
         </button>
       </div>
+      
+      {adviceError && (
+        <p className="advice-error">{adviceError}</p>
+      )}
+
+      {advice && showAdvice && (
+        <div className="advice-overlay">
+          <div className="advice-content">
+            <button 
+              className="advice-close-button"
+              onClick={() => setShowAdvice(false)}
+            >
+              x
+            </button>
+
+            <h3 className="advice-title">Trip Advice</h3>
+            <p className="advice-summary">{advice.summary}</p>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
