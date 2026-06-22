@@ -166,7 +166,7 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
               x
             </button>
 
-            <h3 className="advice-title">Trip Advice</h3>
+            <h3 className="advice-title">Trip Advice for {getDateFormat(forecast.date)}</h3>
             <p className="advice-summary">{advice.summary}</p>
           </div>
         </div>
