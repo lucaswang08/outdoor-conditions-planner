@@ -168,6 +168,24 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
 
             <h3 className="advice-title">Trip Advice for {getDateFormat(forecast.date)}</h3>
             <p className="advice-summary">{advice.summary}</p>
+            <h3>Gear</h3>
+            <ul>
+              {advice.gear.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <h3>Expectations</h3>
+            <ul>
+              {advice.expectations.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <h3>Cautions</h3>
+            <ul>
+              {advice.cautions.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
