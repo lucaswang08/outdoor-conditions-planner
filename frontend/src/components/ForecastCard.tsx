@@ -6,6 +6,9 @@ import type { TripAdvice } from "../types/advice"
 type ForecastCardProps = {
   forecast: WeatherDay
   selectedActivity: Activity
+  isAdviceOpen: boolean
+  onOpenAdvice: () => void
+  onCloseAdvice: () => void
 }
 
 function getWeekday(dateStr: string) {
@@ -69,13 +72,18 @@ function getWeatherDisplay(weatherCode: number) {
   return weatherCodeMap[weatherCode] || { label: "Unknown", icon: "cloudy@4x.png"}
 }
 
-function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
+function ForecastCard({
+  forecast,
+  selectedActivity,
+  isAdviceOpen,
+  onOpenAdvice,
+  onCloseAdvice,
+}: ForecastCardProps) {
   // const { summary } = forecast
 
   const [advice, setAdvice] = useState<TripAdvice | null>(null)
   const [adviceLoading, setAdviceLoading] = useState(false)
   const [adviceError, setAdviceError] = useState<string | null>(null)
-  const [showAdvice, setShowAdvice] = useState(false)
 
   const activityScore = getActivityScore(forecast, selectedActivity)
   
@@ -102,7 +110,7 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
         score: activityScore
       })
       setAdvice(data)
-      setShowAdvice(true)
+      onOpenAdvice()
     } catch {
       setAdviceError("Failed to get advice. Please try again.")
     } finally {
@@ -156,12 +164,12 @@ function ForecastCard({ forecast, selectedActivity }: ForecastCardProps) {
         <p className="advice-error">{adviceError}</p>
       )}
 
-      {advice && showAdvice && (
+      {advice && isAdviceOpen && (
         <div className="advice-overlay">
           <div className="advice-content">
             <button 
               className="advice-close-button"
-              onClick={() => setShowAdvice(false)}
+              onClick={onCloseAdvice}
             >
               x
             </button>

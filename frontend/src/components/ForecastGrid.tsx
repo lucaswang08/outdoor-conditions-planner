@@ -1,4 +1,5 @@
 import type { Activity, WeatherForecast } from "../types/forecast"
+import { useEffect, useState } from "react"
 import ForecastCard from "./ForecastCard"
 
 type ForecastGridProps = {
@@ -30,6 +31,12 @@ function getWeekday(dateStr: string) {
 }
 
 function ForecastGrid({ forecast, loading, error, selectedActivity }: ForecastGridProps) {
+  const [openAdviceDate, setOpenAdviceDate] = useState<string | null>(null)
+
+  useEffect(() => {
+    setOpenAdviceDate(null)
+  }, [selectedActivity])
+
   if (loading) {
     return <p>Loading forecast...</p>
   }
@@ -58,7 +65,14 @@ function ForecastGrid({ forecast, loading, error, selectedActivity }: ForecastGr
 
       <div className="forecast-grid">
         {forecast.forecast.map((day) => (
-          <ForecastCard key={day.date} forecast={day} selectedActivity={selectedActivity} />
+          <ForecastCard
+            key={day.date}
+            forecast={day}
+            selectedActivity={selectedActivity}
+            isAdviceOpen={openAdviceDate === day.date}
+            onOpenAdvice={() => setOpenAdviceDate(day.date)}
+            onCloseAdvice={() => setOpenAdviceDate(null)}
+          />
         ))}
       </div>
       
