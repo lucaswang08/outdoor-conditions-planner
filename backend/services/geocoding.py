@@ -5,7 +5,7 @@ GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 def fetch_geocode(query: str):
   params = {
     "name": query,
-    "count": 5,
+    "count": 7,
     "language": "en",
     "format": "json",
     "countryCode": "CA"

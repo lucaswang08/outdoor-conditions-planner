@@ -76,7 +76,7 @@ def get_hiking_score(weather: dict) -> Score:
     temp_score, temp_message, temp_label = temperature_score(summary["temperature"]["apparent_max"])
     reasons.append({
             "factor": "temperature",
-            "impact": "good" if temp_label == "ideal" else "bad",
+            "impact": temp_label,
             "message": temp_message
         })
     
