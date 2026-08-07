@@ -1,8 +1,9 @@
 import type { Location, WeatherForecast } from "../types/forecast";
 import type { TripAdvice, TripAdviceRequest } from "../types/advice";
 
-const API_BASE_URL = "http://localhost:8000";
-
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  
 export async function getHealth() {
   const response = await fetch(`${API_BASE_URL}/health`);
   if (!response.ok) {
