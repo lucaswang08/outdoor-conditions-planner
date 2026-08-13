@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.advice import TripAdvice, TripAdviceRequest
 from services.geocoding import search_location
 from services.weather import get_forecast
-from services.advice import get_trip_advice
+# from services.advice import get_trip_advice
 
 from models.weather import WeatherForecast
 
@@ -40,4 +40,5 @@ def weather_forecast(latitude: float, longitude: float):
 
 @app.post("/api/advice", response_model=TripAdvice)
 def trip_advice(request: TripAdviceRequest):
+  from services.advice import get_trip_advice
   return get_trip_advice(request)

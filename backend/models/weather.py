@@ -65,7 +65,7 @@ class HourlyConditions(BaseModel):
 class WeatherDay(BaseModel):
     date: str
     summary: DailySummary
-    hourly: list[HourlyConditions]
+    # hourly: list[HourlyConditions]
     scores: list[Score]
 
 class WeatherForecast(BaseModel):

@@ -175,6 +175,7 @@ def normalize_open_meteo_data(data: dict):
       "hourly": hourly,
     }
     day["scores"] = get_scores_for_forecast(day)
+    day.pop("hourly")
     forecast.append(day)
 
   return {
